@@ -131,11 +131,16 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ## 👥 Autores
 
 [![GitHub](https://img.shields.io/badge/GitHub-dssiqueira-181717.svg?style=for-the-badge&logo=github)](https://github.com/dssiqueira)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Diego_Siqueira-0A66C2.svg?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/dssiqueira)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Douglas_Siqueira-0A66C2.svg?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/douglas-siqueira/)
 
 ## 🙏 Agradecimentos
 
-- Equipe Planko.io pelo suporte
+[![Planko.io](https://img.shields.io/badge/Powered%20by-Planko.io-FF6B6B.svg?style=for-the-badge)](https://planko.io)
+
+Um agradecimento especial à equipe Planko.io por todo suporte e confiança no desenvolvimento desta extensão.
+Sua dedicação em criar uma plataforma incrível de gerenciamento de tarefas torna projetos como este possíveis.
+
+Agradecemos também:
 - Comunidade de desenvolvedores Chrome Extensions
 - Contribuidores do projeto
 
