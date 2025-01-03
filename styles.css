@@ -1,0 +1,12 @@
+body {
+    min-width: 400px;
+    min-height: 300px;
+}
+
+.notification {
+    margin-bottom: 1rem;
+}
+
+.is-hidden {
+    display: none !important;
+}

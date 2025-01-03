@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações - Planko.io</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+        }
+        .centered-title {
+            text-align: center;
+            margin-bottom: 2rem !important;
+        }
+        .password-field {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            z-index: 2;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .password-toggle:hover {
+            color: #666;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        body {
+            min-width: 400px;
+        }
+        .token-display {
+            font-family: monospace;
+            word-break: break-all;
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
+        .toast {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            min-width: 250px;
+            max-width: 350px;
+            animation: slideIn 0.3s ease-out;
+        }
+        .toast.is-success {
+            background-color: #48c774;
+            color: #fff;
+        }
+        .toast.is-danger {
+            background-color: #f14668;
+            color: #fff;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        .toast.is-hiding {
+            animation: slideOut 0.3s ease-in forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4">
+        <a href="popup.html" class="button is-light back-button">
+            <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+        </a>
+
+        <h1 class="title is-4 centered-title">Configurações</h1>
+
+        <form id="login-form">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" id="email" placeholder="Seu email" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Senha</label>
+                <div class="control password-field">
+                    <input class="input" type="password" id="password" placeholder="Sua senha" required>
+                    <button type="button" class="password-toggle" aria-label="Mostrar/ocultar senha">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="token-info" class="is-hidden">
+                <label class="label">Token Atual</label>
+                <div class="token-display" id="current-token">Nenhum token salvo</div>
+            </div>
+
+            <div class="button-group mt-4">
+                <button type="submit" id="save" class="button is-primary">
+                    Salvar
+                </button>
+                <button type="button" id="renew" class="button is-info">
+                    Renovar Token
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="settings.js"></script>
+</body>
+</html>

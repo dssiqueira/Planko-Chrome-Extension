@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Planko.io</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            min-width: 400px;
+        }
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
+        .toast {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            min-width: 250px;
+            max-width: 350px;
+            animation: slideIn 0.3s ease-out;
+        }
+        .toast.is-success {
+            background-color: #48c774;
+            color: #fff;
+        }
+        .toast.is-danger {
+            background-color: #f14668;
+            color: #fff;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        .toast.is-hiding {
+            animation: slideOut 0.3s ease-in forwards;
+        }
+        .settings-button {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+        .task-field {
+            position: relative;
+        }
+        .clear-task {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            z-index: 2;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clear-task:hover {
+            color: #666;
+        }
+        .url-checkbox {
+            margin-bottom: 1rem;
+        }
+        .date-field {
+            max-width: 200px;
+        }
+        .centered-title {
+            text-align: center;
+            margin-bottom: 2rem !important;
+        }
+        .clear-input {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            z-index: 2;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clear-input:hover {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4">
+        <a href="settings.html" class="button is-light settings-button">
+            <span class="icon">
+                <i class="fas fa-cog"></i>
+            </span>
+        </a>
+
+        <h1 class="title is-4 centered-title">Planko.io</h1>
+        
+        <div id="content">
+            <div id="no-token-content" class="is-hidden has-text-centered">
+                <p class="mb-4">Configure suas credenciais para começar a usar.</p>
+                <a href="settings.html" class="button is-primary">
+                    Configurar Credenciais
+                </a>
+            </div>
+            <div id="with-token-content" class="is-hidden">
+                <form id="task-form">
+                    <div class="field">
+                        <label class="label">Selecione o Projeto</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="project-select" required>
+                                    <option value="">Carregando projetos...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Tarefa</label>
+                        <div class="control has-icons-right">
+                            <input class="input" type="text" id="task-name" placeholder="Nome da tarefa" required>
+                            <button type="button" class="clear-input" aria-label="Limpar campo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Data de Entrega</label>
+                        <div class="control date-field">
+                            <input class="input" type="date" id="due-date" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Descrição</label>
+                        <div class="control">
+                            <textarea class="textarea" id="description" placeholder="Descrição da tarefa" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" id="save-url" checked>
+                                Salvar site
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="task-error" class="notification is-danger is-hidden">
+                        Erro ao criar tarefa. Por favor, tente novamente.
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary is-fullwidth">
+                                Criar Tarefa
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="popup.js"></script>
+</body>
+</html>

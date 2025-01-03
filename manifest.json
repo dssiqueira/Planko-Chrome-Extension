@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Planko.io Extension",
+  "version": "1.0",
+  "description": "Extensão oficial do Planko.io",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://planko-back.onrender.com/*",
+    "<all_urls>"
+  ]
+}
